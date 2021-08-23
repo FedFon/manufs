@@ -8,11 +8,6 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use("/", apis);
-
 mongoose
   .connect(process.env.DB, {
     useNewUrlParser: true,
@@ -24,5 +19,10 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/", apis);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
