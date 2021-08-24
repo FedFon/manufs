@@ -18,7 +18,7 @@ const NewPatientForm = () => {
         <input type="text" />
       </div>
       <div>
-        <button>Add Appointment</button>
+        <button>Add Patient</button>
       </div>
     </form>
   );
