@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router
-  .route("/")
+  .route("/patient")
   .get((req, res, next) => {
     console.log(`Request from: ${req.originalUrl}`);
     console.log(`Request type: ${req.method}`);
@@ -19,7 +19,7 @@ router
   .post(addNewPatient);
 
 router
-  .route("/:patientID")
+  .route("/patient/:patientID")
   .get((req, res, next) => {
     console.log(`Request from: ${req.originalUrl}`);
     console.log(`Request type: ${req.method}`);
