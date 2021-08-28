@@ -11,13 +11,17 @@ const PatientList = (props) => {
       <ul>
         {patientListRef.current.map((patient) => {
           return (
-            <Patient
-              key={patient._id}
-              firstName={patient.firstName}
-              lastName={patient.lastName}
-              email={patient.email}
-              phone={patient.phone}
-            />
+            <div>
+              <Patient
+                key={patient._id}
+                firstName={patient.firstName}
+                lastName={patient.lastName}
+                email={patient.email}
+                phone={patient.phone}
+              />
+              <button>Delete</button>
+              <button>Edit</button>
+            </div>
           );
         })}
       </ul>
