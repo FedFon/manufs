@@ -4,10 +4,10 @@ const Patient = (props) => {
     <li>
       <Card>
         <div>
-          <h2>{props.firstName}</h2>
-          <h2>{props.lastName}</h2>
-          <h3>{props.email}</h3>
-          <h3>{props.phone}</h3>
+          <div>First name: {props.firstName}</div>
+          <div>Last name: {props.lastName}</div>
+          <div>Email: {props.email}</div>
+          <div>Phone number: {props.phone}</div>
         </div>
       </Card>
     </li>
