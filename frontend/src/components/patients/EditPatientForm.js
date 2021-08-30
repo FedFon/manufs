@@ -2,20 +2,25 @@ import { useRef } from "react";
 import axios from "axios";
 
 const EditPatientForm = (props) => {
+  //creating refrences
   const idRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
   const phoneNumberRef = useRef();
 
+  //This will handle the submit button for this form
   const submitHandler = (event) => {
-    event.preventDefault();
+    event.preventDefault(); //prevents page from reloading
+
+    //setting references to values entered in the form
     const enteredId = idRef.current.value;
     const enteredFirstName = firstNameRef.current.value;
     const enteredLastName = lastNameRef.current.value;
     const enteredEmail = emailRef.current.value;
     const enteredPhoneNumber = phoneNumberRef.current.value;
 
+    //grouping form information into and object to be able to pass onto axios PUT call
     const patient = {
       _id: enteredId,
       firstName: enteredFirstName,
@@ -24,8 +29,11 @@ const EditPatientForm = (props) => {
       phone: enteredPhoneNumber,
     };
 
+    //PUT call
     axios.put(`/patient/${enteredId}`, patient);
   };
+
+  //form returned
   return (
     <form onSubmit={submitHandler}>
       <div>

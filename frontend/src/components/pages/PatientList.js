@@ -3,15 +3,12 @@ import Patient from "../patients/Patient";
 import { useEffect, useRef, useState } from "react";
 
 const PatientList = (props) => {
+  //Making a reference with an empty array
   const patientListRef = useRef([]);
+  //Setting state of loading for patient list
   const [isLoading, setIsLoading] = useState(true);
 
-  /*const deletePatient = () => {
-    console.log("Deleting Patient");
-    console.log(patientListRef.current);
-    // axios.put(`/patient/${pa}`, patient);
-  };*/
-
+  //This function will return an unordered list with Patients
   const fillInPatients = () => {
     return (
       <ul>
@@ -28,6 +25,7 @@ const PatientList = (props) => {
               <button
                 key={"delete " + patient._id}
                 onClick={() => {
+                  //if the delete button is clicked, the current patient object as well as its _id is passed onto the axios DELETE call
                   axios.delete(`/patient/${patient._id}`, patient);
                   console.log(patient._id);
                 }}
@@ -41,6 +39,7 @@ const PatientList = (props) => {
     );
   };
 
+  //if the state changes the axios GET call willl output the patient list
   useEffect(() => {
     axios.get("/patient").then((res) => {
       patientListRef.current = res.data;
@@ -48,6 +47,7 @@ const PatientList = (props) => {
     });
   });
 
+  //either display loading... or the list when its ready
   return (
     <ul>{isLoading ? <div>Loading...</div> : <div>{fillInPatients()}</div>}</ul>
   );
