@@ -6,12 +6,18 @@ const PatientList = (props) => {
   const patientListRef = useRef([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  /*const deletePatient = () => {
+    console.log("Deleting Patient");
+    console.log(patientListRef.current);
+    // axios.put(`/patient/${pa}`, patient);
+  };*/
+
   const fillInPatients = () => {
     return (
       <ul>
         {patientListRef.current.map((patient) => {
           return (
-            <div>
+            <div key={patient.email}>
               <Patient
                 key={patient._id}
                 firstName={patient.firstName}
@@ -19,8 +25,15 @@ const PatientList = (props) => {
                 email={patient.email}
                 phone={patient.phone}
               />
-              <button>Delete</button>
-              <button>Edit</button>
+              <button
+                key={"delete " + patient._id}
+                onClick={() => {
+                  axios.delete(`/patient/${patient._id}`, patient);
+                  console.log(patient._id);
+                }}
+              >
+                Delete
+              </button>
             </div>
           );
         })}
