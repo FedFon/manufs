@@ -39,6 +39,12 @@ const NewPatientForm = (props) => {
         //output error if failed
         console.log(err);
       });
+
+    // this will clear out the form after it is submitted
+    firstNameRef.current.value = "";
+    lastNameRef.current.value = "";
+    emailRef.current.value = "";
+    phoneNumberRef.current.value = "";
   };
 
   //form returned

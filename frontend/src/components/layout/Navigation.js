@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 const Navigation = () => {
   return (
     <header>
-      <div>MANU</div>
+      <div>
+        <i className="bi bi-heart-fill me-2 text-color: text-danger"></i>MANU
+      </div>
       <nav>
         <ul>
           <li>

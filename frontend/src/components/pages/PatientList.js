@@ -27,7 +27,7 @@ const PatientList = (props) => {
                 onClick={() => {
                   //if the delete button is clicked, the current patient object as well as its _id is passed onto the axios DELETE call
                   axios.delete(`/patient/${patient._id}`, patient);
-                  console.log(patient._id);
+                  console.log(patient);
                 }}
               >
                 Delete
@@ -39,13 +39,13 @@ const PatientList = (props) => {
     );
   };
 
-  //if the state changes the axios GET call willl output the patient list
+  //if the state changes the axios GET call will output the patient list
   useEffect(() => {
     axios.get("/patient").then((res) => {
       patientListRef.current = res.data;
       setIsLoading(false);
     });
-  });
+  }, []);
 
   //either display loading... or the list when its ready
   return (
