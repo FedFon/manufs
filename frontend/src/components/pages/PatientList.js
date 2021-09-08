@@ -23,6 +23,7 @@ const PatientList = (props) => {
                 phone={patient.phone}
               />
               <button
+                className="btn btn-secondary"
                 key={"delete " + patient._id}
                 onClick={() => {
                   //if the delete button is clicked, the current patient object as well as its _id is passed onto the axios DELETE call

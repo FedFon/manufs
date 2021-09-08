@@ -44,27 +44,69 @@ const EditPatientForm = (props) => {
   return (
     <form onSubmit={submitHandler}>
       <div>
-        <label htmlFor="_id">ID</label>
-        <input type="text" required id="_id" ref={idRef} />
+        <label className="form-label fw-bold" htmlFor="_id">
+          ID
+        </label>
+        <input
+          className="form-control"
+          type="text"
+          required
+          id="_id"
+          ref={idRef}
+        />
       </div>
       <div>
-        <label htmlFor="firstName">First Name</label>
-        <input type="text" required id="firstName" ref={firstNameRef} />
+        <label className="form-label fw-bold" htmlFor="firstName">
+          First Name
+        </label>
+        <input
+          className="form-control"
+          type="text"
+          required
+          id="firstName"
+          ref={firstNameRef}
+        />
       </div>
       <div>
-        <label htmlFor="lastName">Last Name</label>
-        <input type="text" required id="lastName" ref={lastNameRef} />
+        <label className="form-label fw-bold" htmlFor="lastName">
+          Last Name
+        </label>
+        <input
+          className="form-control"
+          type="text"
+          required
+          id="lastName"
+          ref={lastNameRef}
+        />
       </div>
       <div>
-        <label htmlFor="phoneNumber">Phone Number</label>
-        <input type="text" required id="phone" ref={phoneNumberRef} />
+        <label className="form-label fw-bold" htmlFor="phoneNumber">
+          Phone Number
+        </label>
+        <input
+          className="form-control"
+          type="text"
+          required
+          id="phone"
+          ref={phoneNumberRef}
+        />
       </div>
       <div>
-        <label htmlFor="email">Email</label>
-        <input type="text" required id="email" ref={emailRef} />
+        <label className="form-label fw-bold" htmlFor="email">
+          Email
+        </label>
+        <input
+          className="form-control"
+          type="text"
+          required
+          id="email"
+          ref={emailRef}
+        />
       </div>
       <div>
-        <button>Edit Patient</button>
+        <button className="btn btn-secondary" type="submit">
+          Edit Patient
+        </button>
       </div>
     </form>
   );
