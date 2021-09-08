@@ -3,17 +3,19 @@ const Patient = (props) => {
   return (
     <li>
       <Card>
-        <div className="dl-horizontal">
-          <dl>
-            <dt>First name</dt>
-            <dd>{props.firstName}</dd>
-            <dt>Last name</dt>
-            <dd>{props.lastName}</dd>
-            <dt>Email name</dt>
-            <dd>{props.email}</dd>
-            <dt>Phone Number</dt>
-            <dd>{props.phone}</dd>
-          </dl>
+        <div className="card-body">
+          <div className="card-text">
+            <dl className="row">
+              <dt className="col-sm-3 text-md-right">First name</dt>
+              <dd className="col-sm-9">{props.firstName}</dd>
+              <dt className="col-sm-3 text-md-right">Last name</dt>
+              <dd className="col-sm-9">{props.lastName}</dd>
+              <dt className="col-sm-3 text-md-right">Email name</dt>
+              <dd className="col-sm-9">{props.email}</dd>
+              <dt className="col-sm-3 text-md-right">Phone Number</dt>
+              <dd className="col-sm-9">{props.phone}</dd>
+            </dl>
+          </div>
         </div>
       </Card>
     </li>
