@@ -1,3 +1,9 @@
+/**
+ * File: PatientList.js
+ * Author: Fedfon
+ * Purpose: This file is the component that makes an API call to the express server in order to get the patient list from the MongoDB cluster.
+ *          After that it will map the respone into Patient componentsto be displayed to the user
+ */
 import axios from "axios";
 import Patient from "../patients/Patient";
 import { useEffect, useRef, useState } from "react";

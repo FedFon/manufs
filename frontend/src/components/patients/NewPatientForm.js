@@ -1,3 +1,8 @@
+/**
+ * File: NewPatientForm.js
+ * Author: Fedfon
+ * Purpose: This file is the component for the form when creating a patient.
+ */
 import { useRef } from "react";
 import axios from "axios";
 

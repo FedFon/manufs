@@ -1,3 +1,8 @@
+/**
+ * File: Patient.js
+ * Author: Fedfon
+ * Purpose: This file is the component for the Patient Object. This structure how we want the Patient to appear when called from the Express server.
+ */
 import Card from "../ui/Card";
 const Patient = (props) => {
   return (

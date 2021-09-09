@@ -1,9 +1,13 @@
+/**
+ * File: Navigation.js
+ * Author: Fedfon
+ * Purpose: This hold the Navigation Bar component that will displayed to the client at all times.
+ */
 import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
     <header>
-      <div></div>
       <nav className="navbar navbar-expand-xl bg-secondary navbar-dark">
         <button
           className="navbar-toggler"

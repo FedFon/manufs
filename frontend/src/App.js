@@ -1,3 +1,8 @@
+/**
+ * File: App.js
+ * Author: Fedfon
+ * Purpose: This file is the main component that will be rendered in index.js
+ */
 import { Route, Switch } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import NewPatient from "./components/pages/NewPatient";

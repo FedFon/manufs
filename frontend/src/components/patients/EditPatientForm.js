@@ -1,3 +1,8 @@
+/**
+ * File: EditPatientForm.js
+ * Author: Fedfon
+ * Purpose: This file is the component for the form when editing a patient.
+ */
 import { useRef } from "react";
 import axios from "axios";
 
