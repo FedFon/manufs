@@ -24,6 +24,24 @@ export const getPatients = (req, res) => {
   });
 };
 
+export const getPatientsAscend = (req, res) => {
+  Patient.find({}, (err, patient) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(patient);
+  }).sort({ firstName: 1 });
+};
+
+export const getPatientsDescend = (req, res) => {
+  Patient.find({}, (err, patient) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(patient);
+  }).sort({ firstName: -1 });
+};
+
 export const getPatientWithId = (req, res) => {
   Patient.findById(req.params.patientID, (err, patient) => {
     if (err) {

@@ -14,6 +14,8 @@ const PatientList = (props) => {
   //Setting state of loading for patient list
   const [isLoading, setIsLoading] = useState(true);
   const [deletePressed, setDeletePressed] = useState(false);
+  const [azPressed, setAzPressed] = useState(false);
+  const [zaPressed, setZaPressed] = useState(false);
 
   //if the state changes the axios GET call will output the patient list
   useEffect(() => {
@@ -37,40 +39,83 @@ const PatientList = (props) => {
     }
   }, [deletePressed]);
 
+  useEffect(() => {
+    if (azPressed) {
+      console.log("running after press");
+      axios.get("/patient/asc").then((res) => {
+        setIsLoading(true);
+        patientListRef.current = res.data;
+        setIsLoading(false);
+      });
+      setAzPressed(false);
+    }
+  }, [azPressed]);
+
+  useEffect(() => {
+    if (zaPressed) {
+      console.log("running after press");
+      axios.get("/patient/desc").then((res) => {
+        setIsLoading(true);
+        patientListRef.current = res.data;
+        setIsLoading(false);
+      });
+      setZaPressed(false);
+    }
+  }, [zaPressed]);
+
   //either display loading... or the list when its ready
   return (
-    <ul className="list-inline">
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <div>
-          {patientListRef.current.map((patient) => {
-            return (
-              <div key={patient.email}>
-                <Patient
-                  key={patient._id}
-                  firstName={patient.firstName}
-                  lastName={patient.lastName}
-                  email={patient.email}
-                  phone={patient.phone}
-                />
-                <button
-                  className="btn btn-secondary mb-4"
-                  key={"delete " + patient._id}
-                  onClick={() => {
-                    setDeletePressed(true);
-                    //if the delete button is clicked, the current patient object as well as its _id is passed onto the axios DELETE call
-                    axios.delete(`/patient/${patient._id}`, patient);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </ul>
+    <div>
+      <label>Sort By:</label>
+      <button
+        className="btn btn-secondary mb-2"
+        onClick={() => {
+          setAzPressed(true);
+        }}
+      >
+        A-Z
+      </button>
+      <button
+        className="btn btn-secondary mb-2"
+        onClick={() => {
+          setZaPressed(true);
+        }}
+      >
+        Z-A
+      </button>
+      <ul className="list-inline">
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            {patientListRef.current.map((patient) => {
+              return (
+                <div key={patient.email}>
+                  <Patient
+                    key={patient._id}
+                    firstName={patient.firstName}
+                    lastName={patient.lastName}
+                    email={patient.email}
+                    phone={patient.phone}
+                  />
+                  <button
+                    className="btn btn-secondary mb-4"
+                    key={"delete " + patient._id}
+                    onClick={() => {
+                      setDeletePressed(true);
+                      //if the delete button is clicked, the current patient object as well as its _id is passed onto the axios DELETE call
+                      axios.delete(`/patient/${patient._id}`, patient);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </ul>
+    </div>
   );
 };
 export default PatientList;

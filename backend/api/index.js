@@ -5,6 +5,8 @@ import {
   getPatientWithId,
   updatePatient,
   deletePatient,
+  getPatientsAscend,
+  getPatientsDescend,
 } from "../src/controllers/PatientController";
 
 const router = express.Router();
@@ -17,6 +19,18 @@ router
     next();
   }, getPatients)
   .post(addNewPatient);
+
+router.route("/patient/asc").get((req, res, next) => {
+  console.log(`Request from: ${req.originalUrl}`);
+  console.log(`Request type: ${req.method}`);
+  next();
+}, getPatientsAscend);
+
+router.route("/patient/desc").get((req, res, next) => {
+  console.log(`Request from: ${req.originalUrl}`);
+  console.log(`Request type: ${req.method}`);
+  next();
+}, getPatientsDescend);
 
 router
   .route("/patient/:patientID")
