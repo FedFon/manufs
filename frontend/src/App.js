@@ -7,7 +7,6 @@ import { Route, Switch } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import NewPatient from "./components/pages/NewPatient";
 import PatientList from "./components/pages/PatientList";
-import EditPatient from "./components/pages/EditPatient";
 
 function App() {
   return (
@@ -18,9 +17,6 @@ function App() {
         </Route>
         <Route path="/list">
           <PatientList />
-        </Route>
-        <Route path="/edit">
-          <EditPatient />
         </Route>
       </Switch>
     </Layout>

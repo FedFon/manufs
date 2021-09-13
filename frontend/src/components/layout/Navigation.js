@@ -41,11 +41,6 @@ const Navigation = () => {
                   Patient List
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/edit">
-                  Edit a Patient
-                </Link>
-              </li>
             </ul>
           </div>
         </div>

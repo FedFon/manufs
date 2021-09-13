@@ -3,12 +3,15 @@
  * Author: Fedfon
  * Purpose: This file is the component for the form when editing a patient.
  */
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
+import PatientList from "../pages/PatientList";
 
 const EditPatientForm = (props) => {
+  //state to return to patient list
+  const [backToPatients, setBackToPatients] = useState(false);
+
   //creating refrences
-  const idRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -19,7 +22,6 @@ const EditPatientForm = (props) => {
     event.preventDefault(); //prevents page from reloading
 
     //setting references to values entered in the form
-    const enteredId = idRef.current.value;
     const enteredFirstName = firstNameRef.current.value;
     const enteredLastName = lastNameRef.current.value;
     const enteredEmail = emailRef.current.value;
@@ -27,7 +29,7 @@ const EditPatientForm = (props) => {
 
     //grouping form information into and object to be able to pass onto axios PUT call
     const patient = {
-      _id: enteredId,
+      _id: props.id,
       firstName: enteredFirstName,
       lastName: enteredLastName,
       email: enteredEmail,
@@ -35,85 +37,83 @@ const EditPatientForm = (props) => {
     };
 
     //PUT call
-    axios.put(`/patient/${enteredId}`, patient);
+    axios.put(`/patient/${props.id}`, patient);
 
     // this will clear out the form after it is submitted
-    idRef.current.value = "";
     firstNameRef.current.value = "";
     lastNameRef.current.value = "";
     emailRef.current.value = "";
     phoneNumberRef.current.value = "";
+
+    //state change to return to patient list
+    setBackToPatients(true);
   };
 
   //form returned
   return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <label className="form-label fw-bold" htmlFor="_id">
-          ID
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          required
-          id="_id"
-          ref={idRef}
-        />
-      </div>
-      <div>
-        <label className="form-label fw-bold" htmlFor="firstName">
-          First Name
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          required
-          id="firstName"
-          ref={firstNameRef}
-        />
-      </div>
-      <div>
-        <label className="form-label fw-bold" htmlFor="lastName">
-          Last Name
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          required
-          id="lastName"
-          ref={lastNameRef}
-        />
-      </div>
-      <div>
-        <label className="form-label fw-bold" htmlFor="phoneNumber">
-          Phone Number
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          required
-          id="phone"
-          ref={phoneNumberRef}
-        />
-      </div>
-      <div>
-        <label className="form-label fw-bold" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          required
-          id="email"
-          ref={emailRef}
-        />
-      </div>
-      <div>
-        <button className="btn btn-secondary" type="submit">
-          Edit Patient
-        </button>
-      </div>
-    </form>
+    <div>
+      {backToPatients ? (
+        <PatientList />
+      ) : (
+        <div>
+          <form onSubmit={submitHandler}>
+            <div>
+              <label className="form-label fw-bold" htmlFor="firstName">
+                First Name
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                required
+                id="firstName"
+                ref={firstNameRef}
+              />
+            </div>
+            <div>
+              <label className="form-label fw-bold" htmlFor="lastName">
+                Last Name
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                required
+                id="lastName"
+                ref={lastNameRef}
+              />
+            </div>
+            <div>
+              <label className="form-label fw-bold" htmlFor="phoneNumber">
+                Phone Number
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                required
+                id="phone"
+                ref={phoneNumberRef}
+              />
+            </div>
+            <div>
+              <label className="form-label fw-bold" htmlFor="email">
+                Email
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                required
+                id="email"
+                ref={emailRef}
+              />
+            </div>
+            <div>
+              <button className="btn btn-secondary" type="submit">
+                Edit Patient
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </div>
   );
 };
 
