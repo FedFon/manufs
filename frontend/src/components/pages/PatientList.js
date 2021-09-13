@@ -102,9 +102,12 @@ const PatientList = (props) => {
                     className="btn btn-secondary mb-4"
                     key={"delete " + patient._id}
                     onClick={() => {
-                      setDeletePressed(true);
-                      //if the delete button is clicked, the current patient object as well as its _id is passed onto the axios DELETE call
-                      axios.delete(`/patient/${patient._id}`, patient);
+                      const prompt = window.confirm("Are you sure?");
+                      if (prompt) {
+                        setDeletePressed(true);
+                        //if the delete button is clicked, the current patient object as well as its _id is passed onto the axios DELETE call
+                        axios.delete(`/patient/${patient._id}`, patient);
+                      }
                     }}
                   >
                     Delete
