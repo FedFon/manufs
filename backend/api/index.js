@@ -20,6 +20,13 @@ router
   }, getPatients)
   .post(addNewPatient);
 
+router.route("/").get((req, res, next) => {
+  res.send("Hello World");
+  console.log(`Request from: ${req.originalUrl}`);
+  console.log(`Request type: ${req.method}`);
+  next();
+});
+
 router.route("/patient/asc").get((req, res, next) => {
   console.log(`Request from: ${req.originalUrl}`);
   console.log(`Request type: ${req.method}`);

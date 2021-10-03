@@ -22,10 +22,27 @@ const EditPatientForm = (props) => {
     event.preventDefault(); //prevents page from reloading
 
     //setting references to values entered in the form
-    const enteredFirstName = firstNameRef.current.value;
-    const enteredLastName = lastNameRef.current.value;
-    const enteredEmail = emailRef.current.value;
-    const enteredPhoneNumber = phoneNumberRef.current.value;
+    let enteredFirstName = firstNameRef.current.value;
+    let enteredLastName = lastNameRef.current.value;
+    let enteredEmail = emailRef.current.value;
+    let enteredPhoneNumber = phoneNumberRef.current.value;
+
+    //if any of the field were left empty, use the old patient values to fill
+    if (enteredFirstName === "") {
+      enteredFirstName = props.patient.firstName;
+    }
+
+    if (enteredLastName === "") {
+      enteredLastName = props.patient.lastName;
+    }
+
+    if (enteredEmail === "") {
+      enteredEmail = props.patient.email;
+    }
+
+    if (enteredPhoneNumber === "") {
+      enteredPhoneNumber = props.patient.phone;
+    }
 
     //grouping form information into and object to be able to pass onto axios PUT call
     const patient = {
@@ -37,7 +54,7 @@ const EditPatientForm = (props) => {
     };
 
     //PUT call
-    axios.put(`/patient/${props.id}`, patient);
+    axios.put(`/patient/${props.patient._id}`, patient);
 
     // this will clear out the form after it is submitted
     firstNameRef.current.value = "";
@@ -64,7 +81,6 @@ const EditPatientForm = (props) => {
               <input
                 className="form-control"
                 type="text"
-                required
                 id="firstName"
                 ref={firstNameRef}
               />
@@ -76,7 +92,6 @@ const EditPatientForm = (props) => {
               <input
                 className="form-control"
                 type="text"
-                required
                 id="lastName"
                 ref={lastNameRef}
               />
@@ -88,7 +103,6 @@ const EditPatientForm = (props) => {
               <input
                 className="form-control"
                 type="text"
-                required
                 id="phone"
                 ref={phoneNumberRef}
               />
@@ -100,7 +114,6 @@ const EditPatientForm = (props) => {
               <input
                 className="form-control"
                 type="text"
-                required
                 id="email"
                 ref={emailRef}
               />

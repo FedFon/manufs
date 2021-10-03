@@ -13,8 +13,8 @@ const PatientList = (props) => {
   //Making a reference with an empty array
   const patientListRef = useRef([]);
 
-  //Reference when editing a patient to pass patient id to form component
-  const editPatientId = useRef();
+  //Reference when editing a patient to pass patient to form component
+  const editPatient = useRef([]);
   //Setting state of loading for patient list
   const [isLoading, setIsLoading] = useState(true);
   const [deletePressed, setDeletePressed] = useState(false);
@@ -24,7 +24,6 @@ const PatientList = (props) => {
 
   //if the state changes the axios GET call will output the patient list
   useEffect(() => {
-    console.log("running");
     axios.get("/patient").then((res) => {
       patientListRef.current = res.data;
       setIsLoading(false);
@@ -34,7 +33,6 @@ const PatientList = (props) => {
   //if the delete button is pressed the state of deletePressed will change and this will execute
   useEffect(() => {
     if (deletePressed) {
-      console.log("running after press");
       axios.get("/patient").then((res) => {
         setIsLoading(true);
         patientListRef.current = res.data;
@@ -46,7 +44,6 @@ const PatientList = (props) => {
 
   useEffect(() => {
     if (azPressed) {
-      console.log("running after press");
       axios.get("/patient/asc").then((res) => {
         setIsLoading(true);
         patientListRef.current = res.data;
@@ -58,7 +55,6 @@ const PatientList = (props) => {
 
   useEffect(() => {
     if (zaPressed) {
-      console.log("running after press");
       axios.get("/patient/desc").then((res) => {
         setIsLoading(true);
         patientListRef.current = res.data;
@@ -72,7 +68,7 @@ const PatientList = (props) => {
   return (
     <div>
       {editPressed ? (
-        <EditPatientForm id={editPatientId.current.value} />
+        <EditPatientForm patient={editPatient.current} />
       ) : (
         <div>
           <label>Sort By:</label>
@@ -99,7 +95,7 @@ const PatientList = (props) => {
               <div>
                 {patientListRef.current.map((patient) => {
                   return (
-                    <div key={patient.email}>
+                    <div key={patient._id}>
                       <Patient
                         key={patient._id}
                         firstName={patient.firstName}
@@ -123,10 +119,9 @@ const PatientList = (props) => {
                       </button>
                       <button
                         className="btn btn-secondary mb-4"
-                        ref={editPatientId}
+                        ref={editPatient}
                         onClick={() => {
-                          editPatientId.current.value = patient._id;
-                          console.log(editPatientId.current.value);
+                          editPatient.current = patient;
                           setEditPressed(true);
                         }}
                       >
