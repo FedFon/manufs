@@ -1,10 +1,10 @@
 {
-  "name": "manufs",
+  "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "backend",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon ./backend/server.js --exec babel-node -e js"
+    "start": "nodemon ./server.js --exec babel-node -e js"
   },
   "keywords": [],
   "author": "",
