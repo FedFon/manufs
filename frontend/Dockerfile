@@ -16,4 +16,4 @@ COPY . .
 # Where were going to run API server
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "start"] 
